@@ -1,0 +1,49 @@
+.visualizer-page {
+  display: grid;
+  place-items: center;
+}
+header {
+  background-color: antiquewhite;
+  padding: 20px;
+  .controller {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+
+    div {
+      margin-right: 20px;
+    }
+
+    .animation-speed-input {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    input {
+      width: 40px;
+      font-size: 11pt;
+    }
+  }
+}
+
+.grid {
+  margin: 10px 20px;
+}
+
+.node-row {
+  display: flex;
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: aqua;
+  filter: brightness(90%);
+  margin: 10px;
+}
+
+.height-input-container {
+  margin-left: 10px;
+}

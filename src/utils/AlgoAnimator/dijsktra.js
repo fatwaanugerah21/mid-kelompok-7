@@ -45,11 +45,14 @@ export function visualizeDijkstra(
 ) {
   const startNode = board[startIndex[0]][startIndex[1]];
   const finishNode = board[finsihIndex[0]][finsihIndex[1]];
+  const startSecond = new Date().getMilliseconds();
   const visitedNodesInOrder = dijkstra(board, startNode, finishNode);
   const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+  const finishSecond = new Date().getMilliseconds();
   animateDijkstra(
     visitedNodesInOrder,
     nodesInShortestPathOrder,
     animationSpeed
   );
+  return finishSecond - startSecond;
 }
