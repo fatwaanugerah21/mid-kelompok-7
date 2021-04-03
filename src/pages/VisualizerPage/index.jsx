@@ -20,7 +20,7 @@ const VisualizerPage = () => {
   const [startIndex] = useState([10, 10]);
   const [finishIndex, setFinishIndex] = useState([10, 19]);
 
-  const [boardWidth, setBoardWidth] = useState(20);
+  const [boardWidth, setBoardWidth] = useState(40);
   const [boardHeight, setBoardHeight] = useState(15);
 
   function drawWall(row, col) {
@@ -51,7 +51,7 @@ const VisualizerPage = () => {
   }
 
   function changeStartDOM(row, col) {
-    resetBoard();
+    removeVisitedNode();
     const oldStartDOM = document.getElementById(
       `${nodeBaseID}-${startIndex[0]}-${startIndex[1]}`
     );
@@ -60,7 +60,7 @@ const VisualizerPage = () => {
     nodeDOM?.classList.add("node-start");
   }
   function changeFinishDOM(row, col) {
-    resetBoard();
+    removeVisitedNode();
     const oldFinishDOM = document.getElementById(
       `${nodeBaseID}-${finishIndex[0]}-${finishIndex[1]}`
     );
@@ -93,17 +93,15 @@ const VisualizerPage = () => {
     setMoveFinish(false);
   }
 
-  function resetBoard() {
+  function removeVisitedNode() {
     const allNodes = document.querySelectorAll(".node");
-    allNodes.forEach((node) => {
-      if (
-        node.classList.contains("node-start") ||
-        node.classList.contains("node-finish")
-      )
-        return;
-      node.classList = "node";
+    allNodes?.forEach((node) => {
+      node.classList.remove("node-visited");
+      node.classList.remove("node-shortest-path");
     });
-    clearTimeout();
+  }
+
+  function createNewBoard() {
     setBoard(getInitialGrid(boardWidth, boardHeight));
   }
 
@@ -139,11 +137,18 @@ const VisualizerPage = () => {
   return (
     <div className="visualizer-page">
       <header>
-        <button className="reset" onClick={() => resetBoard()}>
+        <button
+          className="reset"
+          onClick={() => {
+            removeVisitedNode();
+            createNewBoard();
+          }}
+        >
           Reset
         </button>
         <button
           onClick={() => {
+            removeVisitedNode();
             visualizeDijkstra(board, animationSpeed, startIndex, finishIndex);
           }}
         >

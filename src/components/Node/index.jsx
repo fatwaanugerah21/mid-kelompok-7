@@ -20,6 +20,24 @@ const Node = ({
     : isWall
     ? "node-wall"
     : "";
+
+  if (isStart || isFinish)
+    return (
+      <div
+        id={id}
+        className={`node ${extraClassName}`}
+        onMouseDown={() => onMouseDown(row, col)}
+        onMouseEnter={() => onMouseEnter(row, col)}
+        onMouseUp={() => onMouseUp()}
+      >
+        {isStart && (
+          <img src="/icons/start-icon.svg" alt="" width="34" height="34" />
+        )}
+        {isFinish && (
+          <img src="/icons/finish-icon.svg" width="34" height="34" alt="" />
+        )}
+      </div>
+    );
   return (
     <div
       id={id}
@@ -27,7 +45,7 @@ const Node = ({
       onMouseDown={() => onMouseDown(row, col)}
       onMouseEnter={() => onMouseEnter(row, col)}
       onMouseUp={() => onMouseUp()}
-    ></div>
+    />
   );
 };
 export default Node;
