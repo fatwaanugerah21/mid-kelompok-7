@@ -18,7 +18,7 @@ const VisualizerPage = () => {
   const [moveStart, setMoveStart] = useState(false);
 
   const [startIndex] = useState([10, 10]);
-  const [finishIndex, setFinishIndex] = useState([10, 19]);
+  const [finishIndex] = useState([10, 19]);
 
   const [boardWidth, setBoardWidth] = useState(40);
   const [boardHeight, setBoardHeight] = useState(15);
